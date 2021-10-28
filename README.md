@@ -117,3 +117,20 @@ module.exports = {
   },
 };
 ```
+Crear archivo `.babelrc`
+```
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ]
+}
+```
+en el `package.json` agregar en scripts
+```js
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve",
+    "build": "webpack --mode production"
+  },
+```
