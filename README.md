@@ -145,3 +145,98 @@ y el comando
 ```
 npm run start
 ```
+# configuracion de webpack 5 con loaders y estilos
+instalamos dependencias
+```
+npm install css-loader mini-css-extract-plugin --save-dev
+```
+configuramos nuestro archivo `webpack.config.js`
+```js
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module: {
+    rules: [
+      {
+        ...,
+        test: /\.css$/,
+        use: [ 
+          {
+
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
+      }
+    ],
+  },
+  plugins: [
+    ...,
+    new MiniCssExtractPlugin({
+      filename: 'assets/[name].css',
+    })
+  ],
+```
+Lo que nos queda es aplicarlo en nuestro proyecto, para ver si nuestra configuracion es la adecuada vamos a estilar el componente App, nos creamos el archivo `src/styles/components/app.css`
+```css
+h1 {
+  font-size: 40px;
+  color: blue;
+}
+```
+
+# Loaders de Webpack para Preprocesadores CSS
+
+## Loaders de Webpack para preprocesadores CSS
+**¿Quieres utilizar tu preprocesador favorito (como Sass, Less o Stylus) para crear los estilos en tus aplicaciones con React.js?** En esta lectura aprenderás cómo implementarlos dentro de tu proyecto con Webpack.
+
+## Configuración de tu proyecto con Sass
+Primero debemos de instalar las dependencias necesarias para darle soporte a Sass dentro de nuestro proyecto:
+```
+npm install --save-dev sass-loader node-sass
+```
+Una vez agregadas las dependencias necesarias, debemos agregar una nueva regla a la configuración de Webpack en la parte de rules:
+```js
+{
+	test: /\.scss$/,
+	loader: [
+		MiniCSSExtractPlugin.loader,
+		'css-loader',
+		'sass-loader'
+	]
+}
+```
+Ahora puedes agregar archivos Sass a cada componente y tendrás el mismo resultado que configurar directamente CSS en tu proyecto
+
+## Configuración de tu proyecto con Less
+Para darle soporte a Less dentro del proyecto debemos repetir los pasos anteriores, pero con la configuración apropiada para utilizar Less.
+```
+npm install --save-dev less less-loader
+```
+Agregar la configuración de Less a Webpack
+```js
+{
+	test: /\.less$/,
+	loader: [
+		MiniCSSExtractPlugin.loader,
+		'css-loader',
+		'less-loader'
+	]
+}
+```
+## Configuración de tu proyecto con Stylus
+Siguiendo el ejemplo de las configuraciones previas para Sass y Less vamos a repetir los pasos para agregar soporte a Stylus.
+```
+npm install --save-dev stylus stylus-loader
+```
+Ahora agregamos la configuración de Stylus a Webpack:
+```js
+{
+	test: /\.styl$/,
+	loader: [
+		MiniCSSExtractPlugin.loader,
+		'css-loader',
+		'stylus-loader'
+	]
+}
+```
+
