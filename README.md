@@ -111,9 +111,10 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    static: path.join(__dirname, "dist"),
     compress: true,
     port: 3000,
+    open: true
   },
 };
 ```
@@ -130,7 +131,17 @@ en el `package.json` agregar en scripts
 ```js
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
+    "start": "webpack serve --mode development",
     "build": "webpack --mode production"
   },
+```
+# Correr el proyecto
+Si tienes todos los pasos realizados lo unico que falta es que corras tus comandos 
+```
+# solo la primera vez para que muestre los archivos creados en dist
+npm run build
+```
+y el comando 
+```
+npm run start
 ```
